@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設計工作室</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="js/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+</head>
+<style>
+    .timeline-section {
+        position: relative;
+    }
+
+    .timeline-section::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #808080
+    }
+
+    /* /.for v1-增加漸層遮罩  */
+    .carousel-item {
+        min-height: 400px;
+        height: 80vh;
+        position: relative;
+    }
+
+    .carousel-item::before {
+        position: absolute;
+        content: "";
+        inset: 0;
+        background: linear-gradient(45deg, rgba(192, 240, 255, 0.719), rgba(239, 253, 255, 0.123));
+
+    }
+
+    .carousel-caption-box {
+        position: absolute;
+        left: 20%;
+        bottom: 15%;
+        max-width: 500px;
+        text-align: left;
+    }
+
+    .carousel-badge {
+        color: rgb(255, 255, 255);
+        border: 2px solid rgba(252, 141, 141, 0.5);
+        border-radius: 999px;
+        padding: 4px;
+        /* rem是字距 */
+        font-size: 0.85rem;
+        letter-spacing: 0.2rem;
+        display: inline-block;
+    }
+
+    /* .carousel-caption-text {
+        background-color: rgba(0, 0, 0, 0.3);
+        border: 10px;
+        box-shadow: 2px 2px 3px 2px #797979;
+    } */
+
+    .box01 {
+        display: block;
+        background-color: rgb(100, 100, 100);
+        color: rgb(255, 255, 255);
+        text-align: center;
+        border-radius: 5px;
+        border: 5px solid var(rgb(94, 94, 94));
+    }
+
+    .s07-img {
+        width: 150px;
+        height: 150px;
+        border: 2px solid #797979;
+        border-radius: 5px;
+        transition: transform 0.6s;
+        background-image: url("image/design/istockphoto-1467754757-612x612.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .s07-img:hover {
+        background-image: url("image/design/istockphoto-1467754757-612x612.jpg");
+        transform: scale(1.2);
+    }
+
+    .s08-img {
+        width: 150px;
+        height: 150px;
+        border: 2px solid #797979;
+        border-radius: 5px;
+        transition: transform 0.6s;
+        background-image: url("image/design/istockphoto-475566414-2048x2048.jpg");
+        background-size: cover;
+        background-position: center;
+    }
+
+    .s08-img:hover {
+        background-image: url("image/design/istockphoto-475566414-2048x2048.jpg");
+        transform: scale(1.2);
+    }
+
+    .btn-outline-secondary-brand {
+        border: 1px solid var(--brand-secondary);
+        color: var(--brand-secondary);
+        transition: var(--transition-normal);
+    }
+
+    .btn-outline-secondary-brand:hover {
+        background-color: var(--brand-secondary);
+        color: var(--text-light);
+    }
+
+    @media screen and (max-width:768px) {
+        .timeline-section::before {
+            display: none;
+        }
+
+        .s06-text p {
+            color: #ffffff;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+            padding-left: 5px;
+        }
+
+        .s08-text {
+            z-index: 100;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .s06-title {
+            z-index: 100;
+            color: var(--brand-secondary);
+
+        }
+
+        .s06-subtitle {
+            z-index: 100;
+            color: var(--brand-info);
+
+        }
+    }
+</style>
+
+<body>
+    <!-- s01 navbar 導覽列-->
+    <section id="s01">
+        <nav class="navbar navbar-expand-lg bg-light  ">
+            <div class="container justify-content-center">
+                <!-- <a class="navbar-brand" href="#"><i class="fa-solid fa-compass-drafting text-info"></i></a> -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mx-lg-auto ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item ">
+                            <a class="nav-link btn-naver" aria-current="page" href="#">
+                                <i class="fa-solid fa-house me-1"></i>首頁
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link btn-naver" href="#">
+                                <i class="fa-solid fa-paper-plane"></i>關於我們
+                            </a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn-naver" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-solid fa-bell-concierge"></i>服務項目
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item fw-300" href="#">產品設計</a></li>
+                                <li><a class="dropdown-item fw-300" href="#">產品企劃</a></li>
+                                <li><a class="dropdown-item fw-300" href="#">產品諮詢</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">其他服務</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-flex mt-2">
+                        <span class="text-01 h5 me-2 d-none " id="s02-member-span">您好: <span>xxx</span></span>
+                        <button class="btn btn-dark me-2" data-bs-toggle="modal" data-bs-target="#loginModal"
+                            id="s02-login-btn">
+                            <i class="fa-solid fa-right-to-bracket"></i> 登入
+                        </button>
+
+                        <button class="btn btn-outline-secondary-brand" data-bs-toggle="modal"
+                            data-bs-target="#registerModal" id="s02-register-btn">
+                            <i class="fa-solid fa-plus"></i> 註冊
+                        </button>
+                        <button class="btn btn-outline-secondary-brand d-none me-2" id="s02-logout-btn">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> 登出
+                        </button>
+                        <button class="btn btn-outline-secondary-brand d-none me-2" id="s02-controller">
+                             會員中心
+                        </button>
+                        <button class="btn btn-outline-secondary-brand d-none me-2" id="s02-controller-02">
+                            <i class="fa-solid fa-cart-shopping"></i> 購物車
+                        </button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+
+
+    <!-- login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header " style="background-color: var(--brand-info);">
+                    <h1 class="modal-title fs-5 fw-300 text-white" id="exampleModalLabel">會員登錄</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">帳號</label>
+                        <input type="text" class="form-control" id="l-username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">密碼</label>
+                        <input type="password" class="form-control" id="l-password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto" data-bs-toggle="modal" data-bs-target="#registerModal">沒有帳號</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-ser" id="l-btn-ok">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: var(--brand-secondary);">
+                    <h1 class="modal-title fs-5 fw-300 text-white" id="exampleModalLabel">會員登錄</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row timeline-section">
+                        <div class="col-6">
+                            <div class="h3">會員守則</div>
+                            <p>1. 會員在本平台註冊後，即表示同意遵守本網站的使用條款與隱私政策。</p>
+
+                            <p>2. 會員應提供正確且完整的個人資料，如有變更請即時更新，以維持帳戶資訊的正確性。</p>
+
+                            <p>3. 會員帳號僅限本人使用，請妥善保管登入資訊，如因個人疏忽造成損失，本網站不負相關責任。</p>
+
+                            <p>4. 禁止在本平台發表違法、攻擊性、侵權或不當內容，亦不得從事任何妨害平台正常運作之行為。</p>
+
+                            <p>5. 本平台有權因會員違反守則、異常行為或其他正當理由，暫停或終止會員資格。</p>
+
+                            <p>6. 本網站保留隨時修改會員守則之權利，若有變更將公布於網站，並自公告起生效。</p>
+                            <div class="form-check form-switch">
+                                <input type="checkbox" name="" id="" class="form-check-input">
+                                <label for="" class="form-check-label" id="agree-btn">同意/不同意</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label for="" class="form-label">帳號</label>
+                                <input type="text" class="form-control is-invalid" placeholder="請設定帳號1-8字"
+                                    id="r-username">
+                                <div class="valid-feedback" id="r-username-valid-feedback">帳號符合規定</div>
+                                <div class="invalid-feedback" id="r-username-invalid-feedback">帳號不符合規定</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">密碼</label>
+                                <input type="password" class="form-control is-invalid" placeholder="請輸入6~12位數"
+                                    id="r-password">
+                                <div class="valid-feedback">密碼符合規定</div>
+                                <div class="invalid-feedback">密碼不符合規定</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">確認密碼</label>
+                                <input type="password" class="form-control is-invalid" placeholder="請再次輸入密碼"
+                                    id="r-retype-password">
+                                <div class="valid-feedback">密碼一致</div>
+                                <div class="invalid-feedback">密碼不符合規定</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="form-label">Email</label>
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="me-auto" data-bs-toggle="modal" data-bs-target="#loginModal">已有帳號</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                    <button type="button" class="btn btn-ser" id="r-btn-ok">確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- s03 carousel-v banner輪播-> -->
+    <section id="s03">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active img-fluid"
+                    style="background-image: url(image/design/photo-1600697395543-ef3ee6e9af7b.avif);height: 85vh; background-size: cover;background-repeat: no-repeat;">
+                    <div class="carousel-caption d-none d-md-block carousel-caption-box bg-dark bg-opacity-25 p-4 rounded-3 shadow-lg m-auto  wow animate__fadeInLeft"
+                        data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="carousel-badge">產品設計方案</div>
+                        <div class="h1 fw-900 my-3"><i class="fa-solid fa-caret-right"></i>產品策略分析</div>
+                        <p class="mb-3 text-white"><i class="fa-regular fa-circle-dot"></i>透過初期產品的市場分析與痛點分析找出產品定位</p>
+                        <div class="carousel-list text-white-50 mb-3">
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i>概念快速設計</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>3D建模</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>結構評估設計</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-ser">預約服務</button>
+                            <button class="btn btn-outline-light"><i
+                                    class="fa-solid fa-cloud-arrow-down"></i>下載方案簡介</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item img-fluid"
+                    style="background-image: url(image/design/photo-1498262257252-c282316270bc.avif);height: 85vh; background-size: contain;background-repeat: no-repeat;">
+                    <div class="carousel-caption d-none d-md-block carousel-caption-box bg-dark bg-opacity-25 p-4 rounded-3 shadow-lg m-auto  wow animate__fadeInLeft"
+                        data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="carousel-badge">產品設計方案</div>
+                        <div class="h1 fw-900 my-3"><i class="fa-solid fa-caret-right"></i>快速概念設計</div>
+                        <p class="mb-3 text-white"><i class="fa-regular fa-circle-dot"></i>透過sketch或是2D
+                            rendering來快速表達產品概念</p>
+                        <div class="carousel-list text-white-50 mb-3">
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i>產品策略分析</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>3D建模</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>結構評估設計</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-ser">預約服務</button>
+                            <button class="btn btn-outline-light"><i
+                                    class="fa-solid fa-cloud-arrow-down"></i>下載方案簡介</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item img-fluid"
+                    style="background-image: url(image/design/photo-1571764673444-ec81c837285b.avif);height: 85vh; background-size: contain;background-repeat: no-repeat;">
+                    <div class="carousel-caption d-none d-md-block carousel-caption-box bg-dark bg-opacity-25 p-4 rounded-3 shadow-lg m-auto  wow animate__fadeInLeft"
+                        data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="carousel-badge">產品設計方案</div>
+                        <div class="h1 fw-900 my-3"><i class="fa-solid fa-caret-right"></i>3D設計</div>
+                        <p class="mb-3 text-white"><i
+                                class="fa-regular fa-circle-dot"></i>概念成形後,使用3D建模將細節具體化,更能完整表現產品特色與功能</p>
+                        <div class="carousel-list text-white-50 mb-3">
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i>產品策略分析</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>概念快速設計</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>結構評估設計</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-ser">預約服務</button>
+                            <button class="btn btn-outline-light"><i
+                                    class="fa-solid fa-cloud-arrow-down"></i>下載方案簡介</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item img-fluid"
+                    style="background-image: url(image/design/photo-1644022442410-605c197df01e.avif);height: 85vh; background-size: contain;background-repeat: no-repeat;">
+                    <div class="carousel-caption d-none d-md-block carousel-caption-box bg-dark bg-opacity-25 p-4 rounded-3 shadow-lg m-auto  wow animate__fadeInLeft"
+                        data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="carousel-badge">產品設計方案</div>
+                        <div class="h1 fw-900 my-3"><i class="fa-solid fa-caret-right"></i>結構功能設計評估</div>
+                        <p class="mb-3 text-white"><i
+                                class="fa-regular fa-circle-dot"></i>將設計細節導入工程結構設計,經由DFM與模型驗證來評估整體可行性</p>
+                        <div class="carousel-list text-white-50 mb-3">
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i>概念快速設計</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>3D建模</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>產品策略分析</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-ser">預約服務</button>
+                            <button class="btn btn-outline-light"><i
+                                    class="fa-solid fa-cloud-arrow-down"></i>下載方案簡介</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item img-fluid"
+                    style="background-image: url(image/design/photo-1650017069118-2ebf45880fbf.avif);height: 85vh;background-size: cover;">
+                    <div class="carousel-caption d-none d-md-block carousel-caption-box bg-dark bg-opacity-25 p-4 rounded-3 shadow-lg m-auto  wow animate__fadeInLeft"
+                        data-wow-duration="2s" data-wow-delay="0s" data-wow-iteration="1">
+                        <div class="carousel-badge">產品設計方案</div>
+                        <div class="h1 fw-900 my-3"><i class="fa-solid fa-caret-right"></i>品牌規劃</div>
+                        <p class="mb-3 text-white"><i class="fa-regular fa-circle-dot"></i>定義品牌識別</p>
+                        <div class="carousel-list text-white-50 mb-3">
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i>概念快速設計</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>3D建模</div>
+                            <div class="mb-1"><i class="fa-regular fa-circle-dot"></i></i>結構評估設計</div>
+                        </div>
+                        <div>
+                            <button class="btn btn-ser">預約服務</button>
+                            <button class="btn btn-outline-light"><i
+                                    class="fa-solid fa-cloud-arrow-down"></i>下載方案簡介</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+    <!-- s04 公司簡介-->
+    <section id="s04">
+        <div class="container">
+            <div class="row align-items-center">
+
+                <!-- 左側圖片 -->
+                <div class="col-md-5 img-fluid bg-cover" style="background-image: url('image/design/Interior2-2500-X-1500-300dpi-80壓縮.jpg'); 
+                height: 600px; background-size: cover;">
+                </div>
+
+                <!-- 右側文字 -->
+                <div class="col-md-7 p-5">
+
+                    <div class="s04-title-year">西元 2000 年創立</div>
+                    <div class="s04-tag">專業設計公司</div>
+
+                    <p class="s04-desc">專業設計團隊編制，涵蓋產品設計、結構工程與品牌識別。</p>
+                    <p class="s04-desc">榮獲多項國際設計獎項，包括 IF、Reddot、Good Design。</p>
+                    <p class="s04-desc">超過 20 間企業長期合作，累積豐富專案經驗。</p>
+
+                    <div class="row mt-5">
+
+                        <!-- Reddot -->
+                        <div class="col-md-3 s04-award-block">
+                            <div class="s04-award-logo"
+                                style="background-image: url('image/design/Logo_of_Red_Dot_Award.svg.jpg');">
+                            </div>
+                            <div class="s04-award-number counter01">
+                                9<span class="s04-award-unit">項</span>
+                            </div>
+                        </div>
+
+                        <!-- IF -->
+                        <div class="col-md-3 s04-award-block">
+                            <div class="s04-award-logo"
+                                style="background-image: url('image/design/897586_799720.jpg');">
+                            </div>
+                            <div class="s04-award-number counter02">
+                                5<span class="s04-award-unit">項</span>
+                            </div>
+                        </div>
+
+                        <!-- Good Design -->
+                        <div class="col-md-3 s04-award-block">
+                            <div class="s04-award-logo"
+                                style="background-image: url('image/design/20220722T012434909.jpg');">
+                            </div>
+                            <div class="s04-award-number counter03">
+                                10<span class="s04-award-unit">項</span>
+                            </div>
+                        </div>
+
+                        <!-- 其他獎項 -->
+                        <div class="col-md-3 s04-award-block">
+                            <div class="s04-award-logo"
+                                style="background-image: url('image/design/thumb_2x_image.jpg');">
+                            </div>
+                            <div class="s04-award-number counter04">
+                                5<span class="s04-award-unit">項</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 作品精選 -->
+    <section class="container py-5">
+        <h2 class="text-center fw-bold mb-4" data-aos="fade-up">WORKS 精選作品</h2>
+        <p class="text-center text-muted mb-5" style="letter-spacing:1px;" data-aos="fade-up" data-aos-delay="150">
+        </p>
+
+        <div class="row g-4">
+
+            <!-- Card 1 -->
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front "
+                            style="background-image: url(image/design/design_product/14f0e8b1247e64450752dcc575ba9ec3.jpg);">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-title">3C設計</div>
+                            <div class="flip-desc"></div>
+                            <button class="btn btn-outline-light btn-works">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"
+                            style="background-image: url(image/design/design_product/21f0ccd2c619c3a25e30c73bc9636ef7.jpg);">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-title">家俱設計</div>
+                            <div class="flip-desc"></div>
+                            <button class="btn btn-outline-light btn-works">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"
+                            style="background-image: url(image/design/design_product/362b142d5f69871a44454bf200dbe56a.jpg);">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-title">交通工具設計</div>
+                            <div class="flip-desc"></div>
+                            <button class="btn btn-outline-light btn-works">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="col-md-4" data-aos="fade-up">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"
+                            style="background-image: url(image/design/design_product/007e2112c6256dbe34a4657715d74d01.jpg);">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-title">家電設計</div>
+                            <div class="flip-desc"></div>
+                            <button class="btn btn-outline-light btn-works">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"
+                            style="background-image: url(image/design/design_product/7b9e71995a58b8ba57d72ff849d925d1.jpg);">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-title">精品設計</div>
+                            <div class="flip-desc"></div>
+                            <button class="btn btn-outline-light btn-works">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front"
+                            style="background-image: url(image/design/design_product/f0acb0daac32558d6e943c177f3b22d8.jpg);">
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="flip-title">健身器材設計</div>
+                            <div class="flip-desc"></div>
+                            <button class="btn btn-outline-light btn-works">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- s06  關於我們-->
+    <div class="container">
+        <div class="h1 text-center mt-5 mb-5" style="font-family: 'Roboto', sans-serif; color: var(--text-secondary);"
+            data-aos="fade-down">
+            ABOUT US
+        </div>
+    </div>
+
+    <section id="s06" style="position: relative;">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 " data-aos="fade-right" style="position: absolute; top: 0; bottom: 0;
+                background-image: url(image/design/og-image.jpg);
+                background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </div>
+
+        <div class="container s06-block">
+            <div class="row justify-content-end">
+
+                <!-- 右側內容：整塊滑入 -->
+                <div class="col-md-7 s06-text" data-aos="fade-left">
+
+                    <div class="s06-title text-center" data-aos="fade-up" data-aos-delay="100">設計理念</div>
+
+                    <p data-aos="fade-up" data-aos-delay="200">
+                        我們相信，真正的設計應該簡潔、自然、具有留白的呼吸感。
+                        願景不是填滿畫面，而是讓產品在空間中被理解、被感受。
+                    </p>
+
+                    <p data-aos="fade-up" data-aos-delay="300">
+                        在每一個作品中，我們致力於運用純粹的線條、合宜的比例與精準的細節，
+                        讓設計達到「少即是多」的平衡。
+                    </p>
+
+                    <button class="btn-more" data-aos="zoom-in" data-aos-delay="350">查看更多</button>
+
+                    <div class="row mt-5">
+
+                        <!-- 左欄 -->
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="450">
+                            <div class="s06-subtitle">產品設計</div>
+                            <p>
+                                以極簡精神打造純粹風格的產品，著重線條、功能與材質的和諧，使產品在使用中傳達品牌精髓。
+                            </p>
+                        </div>
+
+                        <!-- 右欄 -->
+                        <div class="col-md-6" data-aos="fade-up" data-aos-delay="550">
+                            <div class="s06-subtitle">產品諮詢</div>
+                            <p>
+                                從概念到市場，我們提供精準且不中斷的設計建議，協助企業打造具有國際感的產品體驗。
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- s05-設計流程 -->
+    <section id="s05-a">
+        <div class="h1 text-center mt-5 mb-5" data-aos="fade-down"
+            style="font-family: 'Roboto', sans-serif; color: var(--text-secondary);">
+            WORKFLOW
+        </div>
+
+        <div class="container s05-block">
+
+            <!-- Step 1 -->
+            <div class="row align-items-center s05-step-row">
+                <div class="col-md-6 s05-img " data-aos="fade-right"
+                    style="background-image: url('image/design/premium_vector-1682270324668-19b639c7502d.avif');">
+                    <div class="text-center">
+                        <i class="fa-solid fa-arrows-spin s05-icon"></i>
+                    </div>
+                </div>
+
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="s05-step-title">1. 市場定位</div>
+                    <p class="s05-step-desc">
+                        透過市場調查分析產品優勢，找出精準定位，並評估使用者需求以強化市場競爭力。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="row flex-row-reverse align-items-center s05-step-row">
+                <div class="col-md-6 s05-img" data-aos="fade-left"
+                    style="background-image: url('image/design/design-thinking.avif');">
+                </div>
+
+                <div class="col-md-6" data-aos="fade-right">
+                    <div class="s05-step-title">2. 創意發想</div>
+                    <p class="s05-step-desc">
+                        以團隊方式進行設計思考，聚焦使用者體驗，探討多種可能的創意解決方案。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="row align-items-center s05-step-row">
+                <div class="col-md-6 s05-img" data-aos="fade-right"
+                    style="background-image: url('image/design/photo-1600697395543-ef3ee6e9af7b.avif');">
+                </div>
+
+                <div class="col-md-6" data-aos="fade-left">
+                    <div class="s05-step-title">3. 設計視覺化</div>
+                    <p class="s05-step-desc">
+                        使用草圖或 3D 模型將設計概念具象化，讓產品方向清晰可見。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 團隊介紹 -->
+    <section id="team-section" class="py-5">
+        <div class="container">
+            <div class="h1 text-center mb-5" style="font-family: 'Roboto', sans-serif; color: var(--text-secondary);"
+                data-aos="fade-down">
+                WORK TEAM
+            </div>
+
+            <div class="row g-4">
+
+                <!-- 卡片 1 -->
+                <div class="col-md-3" data-aos="fade-up">
+                    <div class="team-card">
+                        <div class="team-img" style="background-image: url('image/design/leader.jpg');"></div>
+                        <div class="team-body">
+                            <h4 class="team-title">設計總監</h4>
+                            <p class="team-text">主導整體品牌設計方向與視覺策略制定。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 2 -->
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="team-card">
+                        <div class="team-img"
+                            style="background-image: url('image/design/nirmal-rajendharkumar-1lGeOg6IULc-unsplash.jpg');">
+                        </div>
+                        <div class="team-body">
+                            <h4 class="team-title">產品設計師</h4>
+                            <p class="team-text">專注外觀造型、風格整合與使用者體驗。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 3 -->
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="team-card">
+                        <div class="team-img"
+                            style="background-image: url('image/design/airfocus-K_VeavYEfdA-unsplash.jpg');"></div>
+                        <div class="team-body">
+                            <h4 class="team-title">產品企劃</h4>
+                            <p class="team-text">負責產品定位、功能策略與市場需求分析。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片 4 -->
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="team-card">
+                        <div class="team-img"
+                            style="background-image: url('image/design/thisisengineering-r-65knhjRV8-unsplash.jpg');">
+                        </div>
+                        <div class="team-body">
+                            <h4 class="team-title">結構工程師</h4>
+                            <p class="team-text">專精材料、結構與產品量產可行性評估。</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    </section>
+    <!-- s08 設計服務內容 -->
+    <section id="s08" class="py-5" style="background:#FAF8F5;">
+        <div class="container">
+            <div class="h1 text-center mb-5" style="font-family: 'Roboto', sans-serif; color: var(--text-secondary);">
+                SERVICE
+            </div>
+            <div class="row">
+
+                <!-- ========== 左側區塊 ========== -->
+                <div class="col-md-6 mb-5">
+
+                    <h1 class="service-en">Product Strategy</h1>
+                    <h3 class="service-zh">產品與設計策略</h3>
+                    <p class="service-desc">
+                        分析脈絡趨勢、挖掘使用者需求，我們提供全方位體驗設計諮詢服務，
+                        為您的產品制定體驗策略方向。
+                    </p>
+
+                    <!-- List 1 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv1">
+                        市場研究與競爭分析
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv1" class="collapse service-content">
+                        分析產業趨勢、使用者輪廓與市場競爭力，作為產品策略基礎。
+                    </div>
+
+                    <!-- List 2 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv2">
+                        產品定位與價值主張
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv2" class="collapse service-content">
+                        建立在市場中脫穎而出的產品價值與差異化。
+                    </div>
+
+                    <!-- List 3 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv3">
+                        使用者研究
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv3" class="collapse service-content">
+                        透過訪談、觀察與實地研究，深入使用者需求情境。
+                    </div>
+                </div>
+
+
+                <!-- ========== 右側區塊 ========== -->
+                <div class="col-md-6 mb-5">
+
+                    <h1 class="service-en">Product Design</h1>
+                    <h3 class="service-zh">產品設計</h3>
+                    <p class="service-desc">
+                        從快速概念發想到最終完整細節呈現
+                    </p>
+
+                    <!-- List 1 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv5">
+                        快速設計發想
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv5" class="collapse service-content">
+                        運用sketch或2D rendering的形式來表達初步設計概念
+                    </div>
+
+                    <!-- List 2 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv6">
+                        3D設計
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv6" class="collapse service-content">
+                        利用3D建模來呈現產品細節以利後續跟工程單位配合
+                    </div>
+
+                    <!-- List 3 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv7">
+                        3D模型製作
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv7" class="collapse service-content">
+                        透過製作模型來確保功能與細節有符合設計需求
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+
+                <!-- ========== 左側區塊 ========== -->
+                <div class="col-md-6 mb-5">
+
+                    <h1 class="service-en">Product Structure Design</h1>
+                    <h3 class="service-zh">產品結構功能設計</h3>
+                    <p class="service-desc">
+                        透過結構設計規劃將產品導入可量產型式
+                    </p>
+
+                    <!-- List 1 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv1">
+                        產品結構設計
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv1" class="collapse service-content">
+                        從產品材料並分析結構強度進行設計
+                    </div>
+
+                    <!-- List 2 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv2">
+                        產品組裝設計
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv2" class="collapse service-content">
+                        以最優化模式來進行組裝設計,有效節省組裝成本
+                    </div>
+
+                    <!-- List 3 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv3">
+                        產品機構功能設計
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv3" class="collapse service-content">
+                        可動式機構設計,確保良好的使用者體驗
+                    </div>
+                </div>
+
+
+                <!-- ========== 右側區塊 ========== -->
+                <div class="col-md-6 mb-5">
+
+                    <h1 class="service-en"> Product Validation</h1>
+                    <h3 class="service-zh">產品驗證</h3>
+                    <p class="service-desc">
+                        從使用體驗出發，制定體驗策略並落實設計計劃，建立以使用者為中心的使用體驗。
+                    </p>
+
+                    <!-- List 1 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv5">
+                        體驗流程規劃
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv5" class="collapse service-content">
+                        規劃產品主功能結構與核心流程，確認操作合理性。
+                    </div>
+
+                    <!-- List 2 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv6">
+                        設計概念與需求驗證
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv6" class="collapse service-content">
+                        初步概念驗證需求完整性，確保方向正確。
+                    </div>
+
+                    <!-- List 3 -->
+                    <div class="service-item" data-bs-toggle="collapse" data-bs-target="#srv7">
+                        易用性測試
+                        <span class="icon"><i class="fa-solid fa-chevron-down"></i></span>
+                    </div>
+                    <div id="srv7" class="collapse service-content">
+                        測試使用者實際操作情境，找出問題並提出改善建議。
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- s09地址和基本資料 -->
+    <section id="S09">
+        <div class="container">
+            <div class="h1 text-center mb-5" style="font-family: 'Roboto', sans-serif; color: var(--text-secondary);">
+                CONTACT US
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6 ms-0">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3640.0340248543635!2d120.60755087643011!3d24.170539472515156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693e051eda068d%3A0x3f32708a58d5ffe5!2zNDA36Ie65Lit5biC6KW_5bGv5Y2A5bel5qWt5Y2A5LiA6LevMTAw6Jmf!5e0!3m2!1szh-TW!2stw!4v1763608027312!5m2!1szh-TW!2stw"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="" class="form-label">公司名稱</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">姓名</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">電話</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                        <select name="" id="s09-city" class="form-select form-select-lg">
+                            <option value="" disabled selected>--所在地區--</option>
+                            <option value="">台北市</option>
+                            <option value="">台中市</option>
+                            <option value="">台南市</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <select name="" id="" class="form-select form-select-lg">
+                            <option value="" disabled selected>--設計服務--</option>
+                            <option value="">產品設計</option>
+                            <option value="">室內設計</option>
+                            <option value="">開發諮詢</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- S10徵才 -->
+    <section id="s10" class="container-fluid px-0">
+
+        <div class="row g-0">
+
+            <!-- 卡片 1 -->
+            <div class="col-md-6 position-relative text-white d-flex align-items-center bg-dark" style="background-image: url('image/design/istockphoto-528281474-2048x2048.jpg');
+                    background-size: cover; background-position: center; height: 260px;">
+
+                <!-- 半透明遮罩 -->
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+
+                <!-- 內容 -->
+                <div class="position-relative ps-5">
+                    <h2 class="fw-bold">徵求設計師</h2>
+                    <a href="#" class="btn btn-ser mt-2">我要應徵</a>
+                </div>
+            </div>
+
+            <!-- 卡片 2 -->
+            <div class="col-md-6 position-relative text-white d-flex align-items-center bg-dark" style="background-image: url('image/design/photo-1600697395543-ef3ee6e9af7b.avif');
+                    background-size: cover; background-position: center; height: 260px;">
+
+                <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(0,0,0,0.4);"></div>
+
+                <div class="position-relative ps-5">
+                    <h2 class="fw-bold">徵求合作廠商</h2>
+                    <a href="#" class="btn btn-ser mt-2">與我聯繫</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- footer -->
+    <footer id="s11" class="py-4" style="background-color: #000;">
+        <div class="container">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center text-white">
+
+                <!-- 左：版權 -->
+                <div class="small text-white-50" style="letter-spacing: 1px;">
+                    © Daniel 2025.11
+                </div>
+
+                <!-- 中：社群 -->
+                <div class="d-flex gap-4 social-area">
+                    <a href="#" class="text-white social-icon">
+                        <i class="fa-brands fa-instagram fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white social-icon">
+                        <i class="fa-brands fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="#" class="text-white social-icon">
+                        <i class="fa-brands fa-threads fa-lg"></i>
+                    </a>
+                </div>
+
+                <!-- 右：導覽 -->
+                <ul class="nav small">
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 px-2" href="#">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 px-2" href="#">關於我們</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white-50 px-2" href="#">聯絡我們</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </footer>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,    // 動畫時間
+            once: true,       // 只播放一次
+            easing: 'ease-out-quart'
+        });
+    </script>
+    <script>
+        const API_URL = "http://127.0.0.1:5000";
+        // ******counterup2********
+        const counterUp = window.counterUp.default
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target
+                if (entry.isIntersecting && !el.classList.contains('is-visible')) {
+                    counterUp(el, {
+                        duration: 2000,
+                        delay: 16,
+                    })
+                    el.classList.add('is-visible')
+                }
+            })
+        }
+
+        const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+        const el01 = document.querySelector('.counter01')
+        IO.observe(el01)
+        const el02 = document.querySelector('.counter02')
+        IO.observe(el02)
+        const el03 = document.querySelector('.counter03')
+        IO.observe(el03)
+        const el04 = document.querySelector('.counter04')
+        IO.observe(el04)
+
+
+
+        //S09縣市資料
+
+        $(function () {
+            let flag_r_username = false;
+            let flag_r_password = false;
+            let flag_r_retype_password = false;
+            let timer = null;
+
+            let flag_l_username = false;
+            let flag_l_password = false;
+
+            //載入縣市資料
+            $.ajax({
+                type: "GET",
+                url: "js/json/CityCountyData.json",
+                dataType: "json",
+                success: showdata,
+                error: function () {
+                    Swal.fire({
+                        title: "連線錯誤",
+                        text: "js/json/CityCountyData.json",
+                        icon: "error"
+                    });
+                }
+            });
+
+            //檢查token是否存在和合法
+            checkLoginStatus();
+
+
+            //監聽#r-username
+            $("#r-username").on("input", function () {
+
+                //防止多次連續觸發設定一個timer
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+
+                    if ($(this).val().length > 0 && $(this).val().length < 9) {
+                        let username = $(this).val();
+                        //傳遞至後端確認帳號是否存在
+                        axios.post("http://127.0.0.1:5000/api/checkuni", {
+                            username: username
+                        })
+                            .then(function (response) {
+                                console.log(response);
+                                if (response.data.status) {
+                                    $("#r-username").removeClass("is-invalid");
+                                    $("#r-username").addClass("is-valid");
+                                    $("#r-username-valid-feedback").text(response.data.message);
+                                    flag_r_username = true;
+                                } else {
+                                    $("#r-username").removeClass("is-valid");
+                                    $("#r-username").addClass("is-invalid");
+                                    $("#r-username-invalid-feedback").text(response.data.message);
+                                    flag_r_username = false;
+                                }
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            }).finally(function () {
+                                //always executed
+                            })
+                    } else {
+                        $(this).removeClass("is-valid");
+                        $(this).addClass("is-invalid");
+                        $("#r-username-invalid-feedbck").text("帳號不符合規定!");
+                        flag_r_username = false;
+                    }
+                }, 500);
+            });
+
+            //監聽#r-password
+            $("#r-password").on("input", function () {
+                //確認密碼不否符合規定
+                $("#r-retype-password").removeClass("is-valid");
+                $("#r-retype-password").addClass("is-invalid");
+                flag_r_retype_password = false;
+
+                if ($(this).val().length > 0 && $(this).val().length < 9) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_r_password = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_r_password = false;
+                }
+            });
+
+            //即時監聽 #l-username
+
+            $("#l-username").on("input", function () {
+                if ($(this).val().length > 0 && $(this).val().length < 9) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_l_username = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_l_username = false;
+                }
+            });
+
+            //監聽#l-password
+            $("#l-password").on("input", function () {
+                if ($(this).val().length > 0 && $(this).val().length < 9) {
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_l_password = true;
+                } else {
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_l_password = false;
+
+                }
+
+            });
+
+            //監聽l-btn-ok
+            $("#l-btn-ok").on("click", function () {
+                //傳遞後端執行登錄驗證
+                if (flag_l_username && flag_l_password) {
+                    axios.post('http://127.0.0.1:5000/api/login', {
+                        username: $("#l-username").val(),
+                        password: $("#l-password").val(),
+                    })
+                        .then(function (response) {
+                            console.log(response);
+                            if (response.data.status) {
+                                Swal.fire({
+                                    title: response.data.message,
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    icon: "success",
+                                    confirmButtonText: "確認",
+                                    denyButtonText: `Don't save`
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        //驗證成功
+                                        //login關閉
+                                        bootstrap.Modal.getOrCreateInstance("#loginModal").hide();
+
+                                        // //關閉登錄與註冊
+                                        // $("#s02-login-btn").addClass("d-none");
+                                        // $("#s02-register-btn").addClass("d-none");
+
+                                        // //顯示會員資料
+                                        // $("#s02-member-span").removeClass("d-none");
+                                        // $("#s02-member-span").html(`您好: <span>${response.data.username}</span>`);
+                                        // $("#s02-logout-btn").removeClass("d-none");
+                                        // $("#s02-controller").removeClass("d-none");
+                                        setLoginUI(response.data.username);
+
+
+                                        //將token寫入
+                                        console.log(response.data.token);
+                                        setCookie("uid", response.data.token, 7);
+                                        //寫入localstorage
+                                        localStorage.setItem("uid", response.data.token);
+
+                                        Swal.fire("success");
+                                    }
+                                });
+                            } else {
+                                //登入驗證失敗
+                                Swal.fire({
+                                    title: response.data.message,
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: "確認",
+                                    denyButtonText: `Don't save`
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        //loginModal 關閉
+                                        bootstrap.Modal.getOrCreateInstance("#loginModal").hide();
+                                        // $("#l-username").val('');
+                                        // $("#l-password").val('');
+                                    }
+                                });
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                } else {
+                    Swal.fire({
+                        title: "登入欄位錯誤!",
+                        icon: "error"
+                    });
+                }
+            });
+            //登出按鈕監聽
+            $("#s02-logout-btn").on("click", function () {
+                setLogoutUI();
+                //清除localsttorage
+                // localStorage.removeItem("uid");
+
+            });
+
+
+            //即時監聽#r-retype-password
+            $("#r-retype-password").on("input", function () {
+                if ($(this).val() == $("#r-password").val()) {
+                    //確認密碼符合
+                    $(this).removeClass("is-invalid");
+                    $(this).addClass("is-valid");
+                    flag_r_retype_password = true;
+                } else {
+                    //確認密碼不符合
+                    $(this).removeClass("is-valid");
+                    $(this).addClass("is-invalid");
+                    flag_r_retype_password = false;
+                }
+            });
+
+            //監聽註冊確認按鈕
+            $("#r-btn-ok").on("click", function () {
+                if (flag_r_username && flag_r_password && flag_r_retype_password) {
+                    let jsonDATA = {
+                        username: $("#r-username").val(),
+                        password: $("#r-password").val()
+                    }
+                    axios.post('http://127.0.0.1:5000/api/register', jsonDATA)
+                        .then(function (response) {
+                            console.log(response);
+                            if (response.request.status == 200) {
+                                Swal.fire({
+                                    title: "註冊成功!",
+                                    showDenyButton: false,
+                                    showCancelButton: false,
+                                    confirmButtonText: "確認",
+                                    denyButtonText: `Don't save`,
+                                    icon: "success"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        //關閉modal所有的功能
+                                        bootstrap.Modal.getOrCreateInstance("#registerModal").hide();
+
+                                        //清空欄位_.trigger重新觸發驗證行為
+                                        $("#r-username").val('').trigger('input');
+                                        $("#r-password").val('').trigger('input');
+                                        $("#r-retype-password").val('');
+                                    }
+                                });
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        })
+                        .finally(function () {
+                            // always executed
+                        });
+                } else {
+                    Swal.fire({
+                        title: "欄位錯誤!",
+                        icon: "error"
+                    });
+                }
+
+            });
+
+            //會員資料按鈕監聽
+            $("#s02-controller").on("click", function () {
+                // window.location.href = "20251209-SPA-control-panel-api.html";
+
+                //另開分頁寫法
+                window.open("20251209-SPA-control-panel-api.html", "_blank");
+            });
+
+
+        });
+        function showdata(data) {
+            console.log(data);
+
+            $("s09-city").empty();
+            $("s09-city").append(`<option value=""disabled selected>--所在地區--</option>`);
+            data.forEach(function (item) {
+                console.log(item.CityName);
+                let strHTML = `<option value="">${item.CityName}</option>`;
+                $("#s09-city").append(strHTML)
+            });
+        }
+
+        //w3c
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkLoginStatus() {
+            let token = localStorage.getItem("uid");
+            if (!token) {
+                console.log("沒有token!");
+            }
+
+            axios.get('http://127.0.0.1:5000/api/me', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+                .then(function (response) {
+                    // console.log(response);
+                    // //驗證成功
+                    // //關閉登錄與註冊
+                    // $("#s02-login-btn").addClass("d-none");
+                    // $("#s02-register-btn").addClass("d-none");
+                    // $("#s02-member-span").removeClass("d-none");
+                    // $("#s02-member-span").html(`您好: <span>${response.data.username}</span>`);
+                    // $("#s02-logout-btn").removeClass("d-none");
+                    // $("#s02-controller").removeClass("d-none");
+                    setLoginUI(response.data.username);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        }
+
+        function setLoginUI(username) {
+            $("#s02-login-btn").addClass("d-none");
+            $("#s02-register-btn").addClass("d-none");
+            $("#s02-member-span").removeClass("d-none");
+            $("#s02-member-span").html(`您好: <span>${username}</span>`);
+            $("#s02-logout-btn").removeClass("d-none");
+            $("#s02-controller").removeClass("d-none");
+            $("#s02-controller-02").removeClass("d-none");
+        }
+        function setLogoutUI() {
+            $("#s02-login-btn").removeClass("d-none");
+            $("#s02-register-btn").removeClass("d-none");
+            $("#s02-member-span").addClass("d-none");
+            $("#s02-logout-btn").addClass("d-none");
+            $("#s02-controller").addClass("d-none");
+            $("#s02-controller-02").addClass("d-none");
+            localStorage.removeItem("uid");
+              $("#s04").addClass("d-none");
+            $("#s05").addClass("d-none");
+            $("#s06").addClass("d-none");
+            $("#s07").addClass("d-none");
+            $("#s08").addClass("d-none");
+            $("#s09").addClass("d-none");
+            $("#s10").addClass("d-none");
+
+        }
+    </script>
+    <script>
+        new WOW().init();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 900,
+            easing: 'ease-out-quart',
+            once: true
+        });
+    </script>
+
+</body>
+
+</html>

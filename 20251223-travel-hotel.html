@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全國旅館統計</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="js/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+</head>
+
+<body>
+    <header class="bg-cover"
+        style="background-image: url(image/03.jpg);height: 280px;background-repeat: no-repeat;background-position: center;background-size: cover">
+        <div class="display-4 fw-900 text-white p-5 ps-3 text-center">全國各縣市旅館分布</div>
+    </header>
+    <div class="container bg-light">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mt-5">
+                <select name="" id="selectCity" class="form-select form-select-lg" style="margin-top: -25px;">
+                    <option value="" selected disabled>---選擇縣市名稱---</option>
+                    <option value="台中市">台中市</option>
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-10 mt-5">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        const API_URL = "http://127.0.0.1:5000";
+        let hotelData = [];
+        let regionTitle = [];
+        let counter = [];
+        let regionData = [];
+        let myChart = null;
+
+        async function init() {
+            await getData();
+        }
+
+        $(async function () {
+            await init(hotelData);
+            console.log(hotelData);
+            checkLoginStatus();
+            drawSelectCity();
+            //縣市選單監聽
+            $("#selectCity").on("change", function () {
+                const city = $(this).val();
+                console.log($(this).val());
+
+                let regionTitle = [];
+                let counter = [];
+                let regionData = [];
+                //過濾縣市資料
+                hotelData.forEach((item) => {
+                    if (item.PostalAddress.City == city) {
+                        let town = item.PostalAddress.Town;
+                        if (counter[town] == undefined) {
+                            counter[town] = regionData.length;
+                            regionData.push(new Array());
+                            regionTitle[counter[town]] = town;
+                        }
+                        regionData[counter[town]].push(item);
+                    }
+                });
+
+                console.log(regionData);
+                console.log(regionTitle);
+                console.log(counter);
+                //產生圖表
+                const labels = regionTitle
+                const data = regionData.map(arr => arr.length)
+                drawChart(labels, data, type = 'bar')
+            });
+
+
+        })
+        function getData() {
+            return axios.get('js/HotelList.json')
+                .then(function (response) {
+                    console.log(response);
+                    hotelData = response.data.Hotels;
+                    //資料重構}
+                })
+
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        }
+        //縣市選單
+        function drawSelectCity() {
+            axios.get('js/json/CityCountyData.json')
+                .then(function (response) {
+                    console.log(response);
+                    $("#selectCity").empty();
+                    $("#selectCity").append(`<option value="" selected disabled>---選擇縣市名稱---</option>`);
+                    response.data.forEach((item) => {
+                        let strHTML = ` <option value="${item.CityName}">${item.CityName}</option>`;
+                        $("#selectCity").append(strHTML);
+                    });
+                })
+
+                .catch(function (error) {
+                    console.log(error)
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+        }
+
+        function drawChart(labels, data, type = 'line') {
+            const ctx = document.getElementById('myChart');
+            //避免記憶體爆掉
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                //bar(長條圖) , line(折線圖) , pie(圓餅圖
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '統計圖',
+                        data: data,
+                        borderWidth: 1,
+                        backgroundColor: [
+                            '#264653',
+                            '#2A9D8F',
+                            '#E9C46A',
+                            '#F4A261',
+                            '#E76F51',
+                            '#6A4C93',
+                            '#118AB2'
+                        ],
+                        borderColor: '#FFFFFF',
+                        color: '#Fa0',
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function checkLoginStatus() {
+            let token = localStorage.getItem("uid");
+            if (!token) {
+                Swal.fire({
+                    title: "請先登入會員",
+                    showDenyButton: false,
+                    showCancelButton: false,
+                    confirmButtonText: "確認",
+                    denyButtonText: `Don't save`
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "20251209-SPA-member-api.html";
+                    }
+                });
+            }
+
+            //驗證token
+            axios.get('http://127.0.0.1:5000/api/me', {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+                .then(function (response) {
+                    console.log(response);
+                    //token驗證成功
+                    if (response.data.status) {
+                        // alert("驗證成功!");
+                        setControlPanelUI(response.data.username)
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+
+                });
+        }
+    </script>
+</body>
+
+</html>

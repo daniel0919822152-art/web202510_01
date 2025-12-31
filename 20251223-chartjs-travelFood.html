@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chartjs - 報表練習 - 全國美食餐廳統計</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/table-rwd.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/my.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 mt-5">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        let myChart = null;
+        let regionTitle = [];
+        let counter = [];
+        let regionData = [];
+        $(function () {
+            getData();
+            // const labels = ['一般會員', 'vip', 'vvip', 'vvvip'];
+            // const data = [100, 200, 300, 60];
+            // drawChart(labels, data);
+        });
+
+        function getData() {
+            //載入travelFood
+            axios.get('js/json/TravelFood.json')
+                .then(function (response) {
+                    console.log(response);
+                    response.data.forEach((item) => {
+                        //資料重構
+                        let city = item.City;
+                        if(counter[city] == undefined){
+                            counter[city] = regionData.length;
+                            regionData.push(new Array());
+                            regionTitle[counter[city]] = city;
+                        }
+                        regionData[counter[city]].push(item);
+                    });
+                    console.log(regionTitle);
+                    console.log(counter);
+                    console.log(regionData);
+
+                    //產生圖表
+                    const labels = regionTitle
+                    const data = regionData.map(arr => arr.length)
+                    drawChart(labels, data, type = 'bar')
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        }
+
+        function drawChart(labels, data, type = 'line') {
+            const ctx = document.getElementById('myChart');
+
+            myChart = new Chart(ctx, {
+                type: type, //bar, line, pie
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '統計圖',
+                        data: data,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

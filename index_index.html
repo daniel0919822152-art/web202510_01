@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>生成式AI與全端程式設計班 </title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/my.css">
+    <style>
+        .flip-card {
+            background-color: transparent;
+            width: 300px;
+            height: 300px;
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 1.5s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-front {
+            background-color: #bbb;
+            color: black;
+        }
+
+        .flip-card-back {
+            background-color: #2980b9;
+            color: white;
+            transform: rotateY(180deg);
+            
+        }
+    </style>
+</head>
+
+<body class="bg-01">
+    <div class="container-fluid" id="app">
+        <div class="display-2 fw-900 text-center bg-opacity-50 py-3 my-3 text-02" >作品集</div>
+        <div class="row row-cols-2 row-cols-md-3 row-cols-xxl-5">
+            <div class="col mt-3 position-relative" v-for="item in mydata">
+                <div class="flip-card">
+                    <div class="flip-card-inner rounded-5">
+                        <div class="flip-card-front pt-5 rounded-5">
+                            <h1>{{ item.Name }}</h1>
+                            <h1>{{ item.ID }}</h1>
+                        </div>
+                        <div class="flip-card-back rounded-5">
+                            <a :href="item.Url" target="_blank">
+                               <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" style="width:300px;height:300px;" class="rounded-5"> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script>
+        const App = {
+            data() {
+                return {
+                    text: "hi",
+                    mydata: [],
+                }
+            },
+            created() {
+                const vm = this;
+                axios.get('js/st_data.json')
+                    .then(function (response) {
+                        // handle success
+                        console.log(response.data);
+                        vm.mydata = response.data;
+                    })
+                    .catch(function (error) {
+                        // handle error
+                        console.log(error);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
+            }
+        }
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>

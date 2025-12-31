@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全國美食統計</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="js/animate.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+</head>
+
+<body>
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script>
+        let myChart = null;
+        let regionTitle = [];
+        let counter = [];
+        let regionData = [];
+        $(function () {
+            getData();
+
+            // //載入travelFood
+            // axios.get('js/json/travelFood.json')
+            //     .then(function (response) {
+            //         console.log(response);
+            //         //資料重構
+            //     })
+            //     .catch(function (error) {
+            //         console.log(error);
+            //     })
+            //     .finally(function () {
+            //         // always executed
+            //     });
+
+            // const labels = ['一般會員', 'vip', 'vvip', 'vvvip'];
+            // const data = [120, 190, 300, 50];
+            // drawChart(labels, data);
+        });
+
+
+        function getData() {
+            //載入travelFood
+            axios.get('js/json/TravelFood.json')
+                .then(function (response) {
+                    console.log(response);
+                    response.data.forEach((item) => {
+                        //資料重構
+                        let city = item.City;
+                        if (counter[city] == undefined) {
+                            counter[city] = regionData.length;
+                            regionData.push(new Array());
+                            regionTitle[counter[city]] = city;
+                        }
+                        regionData[counter[city]].push(item);
+                    });
+                    console.log(regionTitle);
+                    console.log(counter);
+                    console.log(regionData);
+
+                    //產生圖表
+                    const labels = regionTitle
+                    const data = regionData.map(arr => arr.length)
+                    drawChart(labels, data, type = 'bar')
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        }
+
+        function drawChart(labels, data, type = 'line') {
+            const ctx = document.getElementById('myChart');
+            //避免記憶體爆掉
+            if (myChart) {
+                myChart.destroy();
+            }
+
+            myChart = new Chart(ctx, {
+                //bar(長條圖) , line(折線圖) , pie(圓餅圖
+                type: type,
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: '統計圖',
+                        data: data,
+                        borderWidth: 1,
+                        backgroundColor: ['#fffff',],
+                        borderColor: ['#fffff',],
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

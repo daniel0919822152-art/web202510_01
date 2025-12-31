@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+
+:root {
+    /* Deep Sea */
+    --colorDeepSea00: #0d1321;
+    --colorDeepSea01: #1d2d44;
+    --colorDeepSea02: #3e5c76;
+    --colorDeepSea03: #748cab;
+    --colorDeepSea04: #f0ebd8;
+
+    /* Soft Pink Delight */
+    --colorSoftPinkDelight00: #fb6f92ff;
+    --colorSoftPinkDelight01: #ff8fabff;
+    --colorSoftPinkDelight02: #ffb3c6ff;
+    --colorSoftPinkDelight03: #ffc2d1ff;
+    --colorSoftPinkDelight04: #ffe5ecff;
+
+    /* Muted Earthy Tones */
+    --colorMutedEarthyTones00: #6d6875ff;
+    --colorMutedEarthyTones01: #b5838dff;
+    --colorMutedEarthyTones02: #e5989bff;
+    --colorMutedEarthyTones03: #ffb4a2ff;
+    --colorMutedEarthyTones04: #ffcdb2ff;
+
+    /* Deep Blue Waters */
+    --colorDeepBlueWaters00: #2f6690ff;
+    --colorDeepBlueWaters01: #3a7ca5ff;
+    --colorDeepBlueWaters02: #d9dcd6ff;
+    --colorDeepBlueWaters03: #16425bff;
+    --colorDeepBlueWaters04: #81c3d7ff;
+
+    /* Turquoise Harmony */
+    --colorTurquoiseHarmony00: #05668dff;
+    --colorTurquoiseHarmony01: #028090ff;
+    --colorTurquoiseHarmony02: #00a896ff;
+    --colorTurquoiseHarmony03: #02c39aff;
+    --colorTurquoiseHarmony04: #f0f3bdff;
+
+    /* Golden Summer Fields */
+    --colorGoldenSummerFields00: #ccd5aeff;
+    --colorGoldenSummerFields01: #e9edc9ff;
+    --colorGoldenSummerFields02: #fefae0ff;
+    --colorGoldenSummerFields03: #faedcdff;
+    --colorGoldenSummerFields04: #d4a373ff;
+}
+
+body {
+    font-family: "Noto Sans TC", sans-serif;
+}
+
+/* 字體粗細 */
+.fw-100 {
+    font-weight: 100;
+}
+
+.fw-200 {
+    font-weight: 200;
+}
+
+.fw-200 {
+    font-weight: 200;
+}
+
+.fw-300 {
+    font-weight: 300;
+}
+
+.fw-400 {
+    font-weight: 400;
+}
+
+.fw-500 {
+    font-weight: 500;
+}
+
+.fw-600 {
+    font-weight: 600;
+}
+
+.fw-700 {
+    font-weight: 700;
+}
+
+.fw-800 {
+    font-weight: 800;
+}
+
+.fw-900 {
+    font-weight: 900;
+}
+
+/* 游標觸碰放大 */
+.inter-scale {
+    transition: transform 0.3s ease;
+}
+
+.inter-scale:hover {
+    transform: scale(1.02);
+}

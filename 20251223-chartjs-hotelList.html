@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chartjs - 全國各縣市旅館分布分析報表</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/table-rwd.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/my.css">
+</head>
+
+<body class="bg-02">
+    <header class="bg-cover" style="background-image: url(images/landscape04.avif); height: 280px;">
+        <div class="display-4 fw-900 text-white pt-5 ps-4">全國各縣市旅館分布分析報表</div>
+    </header>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <select name="" id="selectCity" class="form-select form-select-lg" style="margin-top: -25px;">
+                    <option value="" selected disabled>---請選擇縣市分產生報表---</option>
+                    <option value="台中市">台中市</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        let hotelData = [];
+
+        let regionTitle = [];
+        let counter = [];
+        let regionData = [];
+        async function init() {
+            await getData();
+        }
+
+        $(async function () {
+            await init();
+            console.log(hotelData);
+            drawSelectCity();
+
+            //縣市選單監聽
+            $("#selectCity").on("change", function () {
+                console.log($(this).val());
+                const city = $(this).val();
+
+                //1. 過濾該縣市資料
+                //2. 使用該縣市的'鄉鎮區'當資料重構的依據
+                hotelData.forEach((item) => {
+                    if (item.PostalAddress.City == city) {
+                       let town = item.PostalAddress.Town;
+                       if(counter[town] == undefined){
+                        counter[town] = regionData.length;
+                        regionData.push(new Array());
+                        regionTitle[counter[town]] = town;
+                       }
+                       regionData[counter[town]].push(item);
+                    }
+                });
+
+                console.log(regionTitle);
+                console.log(counter);
+                console.log(regionData);
+            });
+        })
+
+        function getData() {
+            return axios.get('js/HotelList.json')
+                .then(function (response) {
+                    console.log(response);
+                    hotelData = response.data.Hotels;
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+
+        }
+
+        //縣市選單
+        function drawSelectCity() {
+            axios.get('js/json/CityCountyData.json')
+                .then(function (response) {
+                    console.log(response);
+                    $("#selectCity").empty();
+                    $("#selectCity").append(`<option value="" selected disabled>---請選擇縣市分產生報表---</option>`);
+                    response.data.forEach((item) => {
+                        let strHTML = `<option value="${item.CityName}">${item.CityName}</option>`;
+                        $("#selectCity").append(strHTML);
+                    });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    // always executed
+                });
+        }
+    </script>
+</body>
+
+</html>

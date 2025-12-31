@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zn-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/table-rwd.css">
+    <link rel="stylesheet" href="css/mycss.css">
+
+</head>
+
+<body>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <section class="bg-cover" style="background-image: url(image/umb.avif); height: 200px;">
+        <div class="display-2 fw-900 text-white p-5">旅館民宿</div>
+    </section>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <select name="" id="citySelect" class="form-select form-select-lg" style="margin-top:-20px;">
+                    <option value="" selected disabled>---選擇縣市名稱---</option>
+                    <option value="" selected disabled>南投縣</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-lg">
+                    <div class="card-body">
+                        <table class="table table-rwd">
+                            <thead>
+                                <tr>
+                                    <th>旅館編號</th>
+                                    <th>名稱</th>
+                                    <th>電話</th>
+                                    <th>地址</th>
+                                    <th>簡介</th>
+                                </tr>
+                            </thead>
+                            <tbody id="hotel_tbody">
+                                <tr>
+                                    <td>xxx</td>
+                                    <td>xxx</td>
+                                    <td>xx</td>
+                                    <td>xx</td>
+                                    <td>xxx</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination mt-3 justify-content-center">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <script>
+        let regionTitle = []
+        let counter = []
+        let regionData = []
+
+        //非同步資料處理
+        async function init() {
+            await getAlldata();
+        }
+
+        $(async function () {
+            //等待資料載完
+            await init();
+
+            //產生縣市選單
+            renderCityOption();
+
+            //監聽選單citySelect
+            $("#citySelect").on("change",function(){
+                console.log($(this).val());
+                //const適用不可變的資料,let適用可編輯資料
+                const selected_city = $(this).val();
+                const hotels = regionData[counter[selected_city]];
+                renderTable(hotels);
+            })
+
+            console.log(regionData);
+            console.log(regionTitle);
+            console.log(counter);
+        })
+
+        //取得旅館民宿 and 資料重構
+        function getAlldata() {
+            return axios.get('js/HotelList.json')
+                .then(function (response) {
+                    // console.log(response.data.Hotels);
+                    // console.log(response.data.Hotels[0].PostalAddress.City);
+                    // console.log(response.data.Hotels[1].PostalAddress.City);
+
+                    //資料重構
+                    response.data.Hotels.forEach((item) => {
+                        let city = item.PostalAddress.City;
+                        if (counter[city] == undefined) {
+                            counter[city] = regionData.length;
+                            regionData.push(new Array());
+                            regionTitle[counter[city]] = city;
+                        }
+                        regionData[counter[city]].push(item);
+                    });
+                    //整理每個縣市的資料citypage
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+                .finally(function () {
+                    //always executed
+                });
+        };
+        //產生縣市選單
+        function renderCityOption(){
+            $("#citySelect").empty();
+            $("#citySelect").append(`<option value="" selected disabled>---選擇縣市名稱---</option>`);
+            regionTitle.forEach((item) => {
+                var strHTML = ` <option value="${item}">${item}</option>`;
+                $("#citySelect").append(strHTML);
+            });
+        }
+
+        function renderTable(hotels){
+            $("#hotel_tbody").empty();
+            hotels.forEach((item)=>{
+                //擷取0-30字
+                const description = item.Description.substring(0,30);
+
+                let strHTML = `<tr>
+                                <td>${item.HotelID}</td>
+                                <td>${item.HotelName}</td>
+                                <td>${item.Telephones[0].Tel}</td>
+                                <td>${item.PostalAddress.City} ${item.PostalAddress.Town} ${item.PostalAddress.StreetAddress}</td>
+                                <td>${description}</td>
+                            </tr>`;
+                $("#hotel_tbody").append(strHTML)
+            });
+        }
+
+
+
+    </script>
+</body>
+
+</html>

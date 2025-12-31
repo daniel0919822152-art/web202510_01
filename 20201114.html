@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>便當表單練習</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+</head>
+<body>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <div class="container">
+        <div class="row justify-content-center align-items-center mt-5">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header h3 fw-900 text-center text-bg-warning">我家小吃部客製化便當訂單系統</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="" class="form-label">菜色名</label>
+                            <input type="text" class="form-control" placeHolder="請輸入便當名稱" id="p_name" list="foodlist">
+                            <datalist id="foodlist">
+                                <option value="滷排骨"></option>
+                                <option value="雞腿飯"></option>
+                                <option value="燒肉便當"></option>
+                                <option value="鯖魚便當"></option>
+                            </datalist>
+                            <div class="valid-feedback">已選取便當</div>
+                            <div class="invalid-feedback">未選取便當!</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="form-label">價格</label>
+                            <input type="number" class="form-control"min="90" max="120" value="" placeholder="請輸入價格90~120" id="p_price">
+                            <div class="valid-feedback">已輸入價格</div>
+                            <div class="invalid-feedback">未輸入價格!</div>
+                        </div>
+                        <div class="mb-3">
+                            <select name="" class="form-select form-select-lg is-invalid" id="select01">
+                            <option value=""select-disable>--主食選擇--</option>
+                            <option value="白米">白米</option>
+                            <option value="糙米">糙米</option>
+                            <option value="麵">麵</option>
+                            </select>
+                            <div class="valid-feedback">已選擇主食</div>
+                            <div class="invalid-feedback">未選擇主食!</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for=""class="form-label">份量:<span class="h5 fw-500" id="">%</span></label>
+                            <input type="range" class="form-range" min="1" max="100" value="10 " id="">
+                        </div>
+                        <div class="mb-3">
+                            <div class="h3">客製加點</div>
+                            <div class="form-check form-check-inline ">
+                                <label for="" class="form-check-label">滷蛋</label>
+                                <input type="checkbox" name="radio01" value="" class="form-check-input">
+                            </div>
+                             <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">豆干</label>
+                                <input type="checkbox" name="radio01" value="" class="form-check-input">
+                            </div>
+                             <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">高麗菜</label>
+                                <input type="checkbox" name="radio01" value="" class="form-check-input">
+                            </div>
+                              <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">滷蛋</label>
+                                <input type="checkbox" name="radio01" value="" class="form-check-input">
+                            </div>
+                              <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">玉米</label>
+                                <input type="checkbox" name="radio01" value="" class="form-check-input">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="h4">取餐方式</div>
+                            <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">自取</label>
+                                <input type="radio" name="" id="" class="form-check-input" value="自取">
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">外送</label>
+                                <input type="radio" name="" id="" class="form-check-input" value="外送">
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <label for="" class="form-check-label">uber</label>
+                                <input type="radio" name="" id="" class="form-check-input" value="uber">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-check form-switch">
+                                <input type="checkbox" name="" id="switch01" class="form-check-input">
+                                <label for="" class="form-check-label">不加辣</label>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-primary"id="ok_btn">確認</button>
+                            <button class="btn btn-secondary">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        let flag_p_name = false;
+        let flag_p_price = false;
+        let flag_select01 = '不加辣';
+    $(function(){
+        //監聽
+        $("#p_name").on("input",function(){
+            if($(this).val().length>1 && $(this).val().length<11){
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                flag_p_name = true;
+            }else{
+                $(this).removeClass('is-valid');
+                $(this).addClass("is-invalid");
+                flag_p_name = false;
+            }
+        });
+        $("#p_price").on("input",function(){
+            if($(this).val()>90 && $(this).val()<120){
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+                flag_p_name = true;
+            }else{
+                $(this).removeClass('is-valid');
+                $(this).addClass("is-invalid");
+                flag_p_name = false;
+            }
+        });
+        $("#select01").on("change",function(){
+                $(this).removeClass('is-invalid');
+                $(this).addClass('is-valid');
+        })
+    });
+    </script>
+</body>
+</html>
